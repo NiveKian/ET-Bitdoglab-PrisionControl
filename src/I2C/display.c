@@ -38,7 +38,7 @@ void setDisplay_Selector(uint8_t type, uint16_t select_position)
     ssd1306_draw_string(&ssd, "  PORTA N3  ", 5, 48);
     break;
   case 2:
-    ssd1306_draw_string(&ssd, " LUZES N1  ", 5, 21);
+    ssd1306_draw_string(&ssd, "  LUZES N1  ", 5, 21);
     ssd1306_draw_string(&ssd, "  LUZES N2  ", 5, 30);
     ssd1306_draw_string(&ssd, "  LUZES N3  ", 5, 39);
     ssd1306_draw_string(&ssd, "  LUZES N3  ", 5, 48);
