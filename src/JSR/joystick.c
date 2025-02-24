@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <ctype.h>
 #include "pico/stdlib.h"
+#include "hardware/adc.h"
 
 #define JOYSTICK_X_PIN 26 // GPIO para eixo X
 #define JOYSTICK_Y_PIN 27 // GPIO para eixo Y
@@ -9,7 +10,7 @@
 #define ADC_CHANNEL_O 0   // adc do eixo y
 
 // Variaveis de controle Joystick
-static uint16_t joystick_value[2] = {0,0}
+static uint16_t joystick_value[2] = {0,0};
 
 /**
  * Função para os valores do eixos do joystick

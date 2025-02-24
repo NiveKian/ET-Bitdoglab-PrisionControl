@@ -38,6 +38,7 @@ add_executable(PrisionControl
  src/matriz/matrizLed.c
  src/I2C/display.c
  src/I2C/ssd1306.c
+ src/JSR/joystick.c
 )
 
 pico_set_program_name(PrisionControl "PrisionControl")
@@ -71,6 +72,7 @@ target_link_libraries(PrisionControl
         hardware_i2c
         hardware_uart
         hardware_timer
+        hardware_adc
         )
 
 pico_add_extra_outputs(PrisionControl)

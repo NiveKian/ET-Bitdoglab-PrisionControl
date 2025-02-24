@@ -23,24 +23,35 @@ static volatile uint32_t last_interrupt_time = 0; // Variavel que salva ultima i
 // Variaveis de estado do botão
 bool isButtonA = false;
 bool isButtonB = false;
+bool isButtonJOY = false;
 
 // Leds Variables
-const npLED_t clr_door_open = {0, 0, 0};
-const npLED_t clr_door_close = {0, 0, 0};
-const npLED_t clr_lights = {0, 0, 0};
+const npLED_t clr_door_open = {12,148,36};
+const npLED_t clr_door_close = {227, 56, 38};
+const npLED_t clr_lights = {227, 222, 38};
+
+const uint8_t id_lights[4] = {2,4,22,24};
+const uint8_t id_doors[4] = {9,7,19,17};
 
 npLED_t prisionLeds[25] = {
-    {0, 0, 0}, {0, 0, 0}, {255, 40, 0}, {255, 40, 0}, {255, 40, 0},
-    {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {255, 40, 0},
-    {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {255, 40, 0},
-    {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {255, 40, 0},
-    {0, 0, 0}, {0, 0, 0}, {255, 40, 0}, {255, 40, 0}, {255, 40, 0}};
+    {36,69,141}, {227, 222, 38}, {36,69,141}, {227, 222, 38}, {36,69,141},  // camada presos Baixo
+    {36,69,141}, {227, 56, 38}, {36,69,141}, {227, 56, 38}, {36,69,141},    // camada portas Baixo
+    {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0},                  // corredor
+    {36,69,141}, {227, 56, 38}, {36,69,141}, {227, 56, 38}, {36,69,141},    // camada portas Cima
+    {36,69,141}, {227, 222, 38}, {36,69,141}, {227, 222, 38}, {36,69,141}}; // camada presos Cima
+
+
+// Variaveis de controle da PRISÃO
+uint8_t menu_state = 0;
+uint8_t selection_position = 1;
 
 /**
  * Função que realiza função do BOTÃO A
  */
 void dobuttonA()
 {
+  // ACENDE E DESLIGA LUZ DO CORREDOR
+  // EMERGENCIA
 }
 
 /**
@@ -48,6 +59,26 @@ void dobuttonA()
  */
 void dobuttonB()
 {
+  
+}
+
+/**
+ * Função que realiza função do BOTÃO do Joystick
+ */
+void dobuttonJoy()
+{
+  // ATIVA SELEÇÃO
+  // MUDA ESTADO DE SELECAO
+}
+
+/**
+ * Função que gere o menu de seleção de acordo com o valor do joystick
+ */
+void doSelectMenu() {
+
+  
+
+  setDisplay_Selector(menu_state, selection_position);
 }
 
 /**
@@ -97,11 +128,13 @@ void setup()
 
   // Inicia Matriz de LEDS com PIO
   initMatriz();
+  Matriz_change(prisionLeds);
+
+  // Inicializa o leitor joystick
+  joystick_init();
 
   // Incializa o display I2C
   display_init();
-
-  // Inicializa o leitor joystick
 
   // Configuração da interrupção com callback
   gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
@@ -129,10 +162,12 @@ int main()
     else if (isButtonB) // Detecta mudança de botão B e processa
     {
       dobuttonB();
-    }
-    else // Funcao principal do sistema
+    } else if (isButtonJOY) // Detecta mudança de botao JOY e processa
     {
-      // ELSE
+      dobuttonJoy();
+    } else // Funcao principal do sistema
+    {
+      doSelectMenu();
     }
 
     // Reduz processamento
