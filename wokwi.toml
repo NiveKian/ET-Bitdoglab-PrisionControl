@@ -1,0 +1,4 @@
+[wokwi]
+version = 1
+firmware = 'build/PrisionControl.uf2'
+elf = 'build/PrisionControl.elf'
