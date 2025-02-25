@@ -57,15 +57,24 @@ const int8_t SelRngMax = 4;
 
 /**
  * Função que realiza função do BOTÃO A
+ * Abre todas as portas e emite beep de aviso
  */
 void dobuttonA()
 {
-  // ACENDE E DESLIGA LUZ DO CORREDOR
-  // EMERGENCIA
-  
+  // Abre todas as portas fechadas
+  for (uint i = 0; i < sizeof(doors) ; i++)
+  {
+    if (!doors[i])
+    {
+      prisionLeds[id_doors[i]] = clr_door_open;
+      doors[i] = true;
+    }
+  }
 
-  play_tone(BUZZER_B_PIN, 880, 500);
+  Matriz_change(prisionLeds);
+  play_tone(BUZZER_B_PIN, 880, 300);
   isButtonA = false;
+  printf("DobuttonA: OPEN ALL DOORS 0\n");
 }
 
 /**
@@ -75,7 +84,7 @@ void dobuttonA()
 void dobuttonB()
 {
   menu_state = 0;
-  play_tone(BUZZER_A_PIN, 262, 300);
+  play_tone(BUZZER_A_PIN, 659, 300);
   isButtonB = false;
   printf("DobuttonB: BACK TO MENU 0\n");
 }
