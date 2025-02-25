@@ -7,6 +7,7 @@
 #include "matriz/matrizLed.h"
 #include "I2C/display.h"
 #include "JSR/joystick.h"
+#include "BUZZ/buzzer.h"
 
 #define LED_RED 13
 #define LED_GREEN 11
@@ -61,6 +62,9 @@ void dobuttonA()
 {
   // ACENDE E DESLIGA LUZ DO CORREDOR
   // EMERGENCIA
+  
+
+  play_tone(BUZZER_B_PIN, 880, 500);
   isButtonA = false;
 }
 
@@ -71,6 +75,7 @@ void dobuttonA()
 void dobuttonB()
 {
   menu_state = 0;
+  play_tone(BUZZER_A_PIN, 262, 300);
   isButtonB = false;
   printf("DobuttonB: BACK TO MENU 0\n");
 }
@@ -126,6 +131,7 @@ void dobuttonJoy()
   }
 
   Matriz_change(prisionLeds);
+  beep();
   isButtonJOY = false;
 }
 
@@ -236,6 +242,9 @@ void setup()
 
   // Incializa o display I2C
   display_init();
+
+  // Inicializa o buzzer para uso
+  init_buzzer();
 
   // Configuração da interrupção com callback
   gpio_set_irq_enabled_with_callback(BUTTON_A, GPIO_IRQ_EDGE_FALL, true, &gpio_callback);

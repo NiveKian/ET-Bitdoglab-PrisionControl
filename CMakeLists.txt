@@ -39,6 +39,7 @@ add_executable(PrisionControl
  src/I2C/display.c
  src/I2C/ssd1306.c
  src/JSR/joystick.c
+ src/BUZZ/buzzer.c
 )
 
 pico_set_program_name(PrisionControl "PrisionControl")
@@ -62,6 +63,7 @@ target_include_directories(PrisionControl PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}/src/matriz
         ${CMAKE_CURRENT_LIST_DIR}/src/I2C
         ${CMAKE_CURRENT_LIST_DIR}/src/JSR
+        ${CMAKE_CURRENT_LIST_DIR}/src/BUZZ
 )
 
 # Add any user requested libraries
@@ -73,6 +75,7 @@ target_link_libraries(PrisionControl
         hardware_uart
         hardware_timer
         hardware_adc
+        hardware_pwm
         )
 
 pico_add_extra_outputs(PrisionControl)
