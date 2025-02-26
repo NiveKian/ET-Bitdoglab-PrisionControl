@@ -20,13 +20,12 @@ Simular um sistema de prisão utilizando a placa de testes BitDogLab para trabal
 # Funcionalidades
 
 1) Através do menu disponibilizado no display é possivel selecionar o submenu de Portas ou Luzes
-    1.1) No submenu de Portas pode fazer o controle de portas abrindo ou fechando-as.
-         Seria equivalente ao leds correspondentes a portas saindo do vermelho/verde.
-    1.2) No submenu de Luzes pode fazer o controle de luzes dos prisioneiros.
-         Seria equivalente ao leds correspondentes das luzes ligando e desligando.
-2) Ao clicar o botão B e possivel voltar so submenu para o menu principal.
-3) Ao clicar o botão A, um sinal e emitido, e todas as portas se abrem.
-4) Um sinal do buzzer é emitido a cada chamada de funcionalidade e uso do menu do sistema.s
+
+2) No submenu de Portas pode fazer o controle de portas abrindo ou fechando-as. Seria equivalente ao leds correspondentes a portas saindo do vermelho/verde.
+2) No submenu de Luzes pode fazer o controle de luzes dos prisioneiros. Seria equivalente ao leds correspondentes das luzes ligando e desligando.
+3) Ao clicar o botão B e possivel voltar so submenu para o menu principal.
+4) Ao clicar o botão A, um sinal e emitido, e todas as portas se abrem.
+5) Um sinal do buzzer é emitido a cada chamada de funcionalidade e uso do menu do sistema.s
 
 
 # Diagrama de pastas
@@ -51,3 +50,7 @@ SRC
     ├── matrizLed.h  
     └── ledStruct.h (salva o struct utilizado para o RGB) 
 ``` 
+
+# Modelo wokwi
+
+![wokwi_model](Images/wokwi_model.png)
